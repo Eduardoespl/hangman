@@ -15,7 +15,7 @@ const Hangman = ({ words }: HangmanProps) => {
     const [wordGuessed, setWordGuessed] = useState(false);
 
     useEffect(() => {
-        let timer;
+        let timer: number | undefined;
         if (gameStarted && !wordGuessed) {
             timer = setInterval(() => {
                 setCurrentTime(new Date());

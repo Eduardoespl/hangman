@@ -7,13 +7,16 @@ const countries = ['mexico', 'canada', 'argentina', 'brazil', 'chile', 'colombia
 const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'violet', 'black', 'white', 'brown'];
 const shapes = ['circle', 'square', 'triangle', 'rectangle', 'pentagon', 'hexagon', 'heptagon'];
 
+const categoryNames = ['words', 'animals', 'countries', 'colors', 'shapes'];
 const categories = [words, animals, countries, colors, shapes];
-const randomCategory = categories[Math.floor(Math.random() * categories.length)];
+const randomIndex = Math.floor(Math.random() * categories.length);
+const randomCategory = categories[randomIndex];
+const selectedCategoryName = categoryNames[randomIndex];
 
 function App() {
   return (
     <div className="App">
-      <Welcome />
+      <Welcome category = {selectedCategoryName}/>
       <Hangman words={randomCategory} />
     </div>
   );

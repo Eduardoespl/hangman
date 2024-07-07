@@ -47,11 +47,17 @@ const Hangman = ({ words }: HangmanProps) => {
     });
 
     const handleGuess = (letter: string) => {
+        const fondo = document.querySelector('.show');
+        const input = document.querySelector('#captura')
         if (!guessedLetters.includes(letter)) {
             setGuessedLetters([...guessedLetters, letter]);
             if (!selectedWord.includes(letter)) {
                 setErrorCount(errorCount + 1);
                 console.log("setErrorCount", errorCount);
+                if (errorCount > 4) {
+                    fondo?.classList.toggle('background-error');
+                    input?.classList.toggle('hide');
+                }
             }
         }
     };
@@ -83,7 +89,7 @@ const Hangman = ({ words }: HangmanProps) => {
             <button onClick={showGame} className="button"> Start game </button>
             <div className="hide">
                 <p>{displayWord.join(' ')}</p>
-                <input maxLength={1} onChange={(e) => handleGuess(e.target.value)} />
+                <input maxLength={1} onChange={(e) => handleGuess(e.target.value)} id="captura" />
                 {(displayWord.join('')=== selectedWord || errorCount > 5) && (
                     <button onClick={() => {
                         restartGame();
